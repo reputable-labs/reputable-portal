@@ -498,7 +498,7 @@ function Dashboard({ clients, loading, onNewClient, onViewClient, onDeleteClient
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
                     <div style={{ width: 44, height: 44, borderRadius: 12, background: `linear-gradient(135deg, ${co.navy}, ${co.navyMid})`, display: "flex", alignItems: "center", justifyContent: "center", color: co.gold }}>{IC.company}</div>
-                    <div><div style={{ fontSize: 16, fontWeight: 600, color: co.text, marginBottom: 4 }}>{cl.companyName}</div><Badge variant={st.variant}>{st.label}</Badge></div>
+                    <div><div style={{ fontSize: 16, fontWeight: 600, color: co.text, marginBottom: 4 }}>{cl.companyName}</div><div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}><Badge variant={st.variant}>{st.label}</Badge>{cl.overallStatus === "submitted" && (() => { const allApproved = cl.assets.every((a) => a.status === "approved"); return allApproved ? <Badge variant="green">✓ All Approved</Badge> : <Badge variant="amber">✎ Has Revisions</Badge>; })()}</div></div>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                     <button onClick={(e) => copyLink(cl.id, e)} style={{ background: copiedId === cl.id ? co.greenBg : "none", border: "1px solid transparent", cursor: "pointer", padding: "6px 10px", borderRadius: 6, fontSize: 11, fontWeight: 600, fontFamily: fo.body, color: copiedId === cl.id ? co.green : co.textLight }}>{copiedId === cl.id ? "✓ Copied" : "Link"}</button>
