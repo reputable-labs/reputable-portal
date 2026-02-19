@@ -314,6 +314,95 @@ function AdminClientView({ clientId, onSave, onBack }) {
           <span style={{ fontSize: 13, color: saved ? co.green : co.textLight, fontWeight: saved ? 600 : 400 }}>{saved ? "✓ Asset saved — client will see it" : "Assets auto-save when uploaded."}</span>
         </div>
       </Card>
+
+      {/* Client Review Status */}
+      <Card style={{ marginBottom: 24 }}>
+        <h3 style={{ fontFamily: fo.display, fontSize: 18, color: co.text, fontWeight: 600, marginBottom: 8 }}>Client Review Status</h3>
+
+        {client.overallStatus === "not_started" && (
+          <div style={{ padding: "24px 20px", borderRadius: 12, background: co.inputBg, border: `1px solid ${co.borderLight}`, textAlign: "center" }}>
+            <p style={{ color: co.textMuted, fontSize: 14, margin: 0 }}>The client hasn't opened their link yet. Upload your assets above, then share the link.</p>
+          </div>
+        )}
+
+        {client.overallStatus === "pending_review" && (
+          <div style={{ padding: "24px 20px", borderRadius: 12, background: co.amberBg, border: `1px solid ${co.amber}22`, textAlign: "center" }}>
+            <p style={{ color: co.amber, fontSize: 14, fontWeight: 600, margin: "0 0 4px" }}>Waiting for client</p>
+            <p style={{ color: co.textMuted, fontSize: 13, margin: 0 }}>The client has filled out the intake form and is reviewing assets.</p>
+          </div>
+        )}
+
+        {client.overallStatus === "submitted" && (() => {
+          const approved = client.assets.filter((a) => a.status === "approved");
+          const revisions = client.assets.filter((a) => a.status === "revision");
+          const pending = client.assets.filter((a) => a.status === "pending");
+          return (
+            <div>
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
+                {approved.length > 0 && <Badge variant="green">✓ {approved.length} Approved</Badge>}
+                {revisions.length > 0 && <Badge variant="amber">✎ {revisions.length} Revision{revisions.length > 1 ? "s" : ""}</Badge>}
+                {pending.length > 0 && <Badge variant="muted">{pending.length} Pending</Badge>}
+              </div>
+              <p style={{ color: co.textMuted, fontSize: 13, marginBottom: 20 }}>
+                Submitted {client.submittedAt ? new Date(client.submittedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" }) : ""}
+              </p>
+
+              {/* Per-asset breakdown */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {client.assets.map((asset) => (
+                  <div key={asset.id} style={{
+                    padding: "16px 20px", borderRadius: 14, background: co.inputBg,
+                    borderLeft: `4px solid ${asset.status === "approved" ? co.green : asset.status === "revision" ? co.amber : co.border}`,
+                  }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8, marginBottom: asset.feedback ? 10 : 0 }}>
+                      <div>
+                        <span style={{ fontSize: 14, fontWeight: 600, color: co.text }}>{asset.title}</span>
+                        <span style={{ fontSize: 11.5, color: co.textLight, marginLeft: 8 }}>{asset.type}</span>
+                      </div>
+                      <Badge variant={asset.status === "approved" ? "green" : asset.status === "revision" ? "amber" : "muted"}>
+                        {asset.status === "approved" ? "✓ Approved" : asset.status === "revision" ? "✎ Revision" : "Pending"}
+                      </Badge>
+                    </div>
+                    {asset.feedback && (
+                      <div style={{ padding: "10px 14px", borderRadius: 8, background: co.card, border: `1px solid ${co.borderLight}`, marginTop: 8 }}>
+                        <span style={{ fontSize: 11, fontWeight: 600, color: co.amber, textTransform: "uppercase", letterSpacing: 0.8 }}>Client Feedback</span>
+                        <p style={{ fontSize: 13.5, color: co.text, lineHeight: 1.6, margin: "6px 0 0" }}>{asset.feedback}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
+      </Card>
+
+      {/* Form Info */}
+      {client.formCompleted && (
+        <Card>
+          <h3 style={{ fontFamily: fo.display, fontSize: 18, color: co.text, fontWeight: 600, marginBottom: 16 }}>Intake Form Info</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 16 }}>
+            {[
+              { label: "Company", value: client.companyName },
+              { label: "Social Handles", value: client.socialHandles },
+              { label: "Collaborator", value: client.collaboratorName },
+              { label: "Email", value: client.collaboratorEmail },
+            ].filter((f) => f.value).map((f) => (
+              <div key={f.label} style={{ padding: "12px 16px", borderRadius: 10, background: co.inputBg }}>
+                <div style={{ fontSize: 10, fontWeight: 700, color: co.textLight, textTransform: "uppercase", letterSpacing: 0.8, marginBottom: 4 }}>{f.label}</div>
+                <div style={{ fontSize: 14, color: co.text, fontWeight: 500 }}>{f.value}</div>
+              </div>
+            ))}
+          </div>
+          {(client.collabPost || client.storySharing || client.crossPosting) && (
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 16 }}>
+              {client.collabPost && <Badge variant="navy">Collab Post</Badge>}
+              {client.storySharing && <Badge variant="navy">Story Sharing</Badge>}
+              {client.crossPosting && <Badge variant="navy">Cross-Posting</Badge>}
+            </div>
+          )}
+        </Card>
+      )}
     </div>
   );
 }
