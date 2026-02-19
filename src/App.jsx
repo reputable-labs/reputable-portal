@@ -11,10 +11,10 @@ import {
 
 // ─── Demo Asset Data ─────────────────────────────────────────────
 const DEFAULT_ASSETS = [
-  { id: "asset_1", type: "Instagram Feed Post", title: "Study Announcement — Feed Post #1", description: "Primary recruitment graphic introducing the study objectives, eligibility criteria, and call-to-action for your target audience.", preview: "linear-gradient(135deg, #1a2744 0%, #2c4a7c 40%, #4a7ab5 100%)", previewLabel: "IG FEED", dimensions: "1080 × 1080" },
-  { id: "asset_2", type: "Instagram Feed Post", title: "Study Announcement — Feed Post #2", description: "Supporting graphic with participant benefits, study timeline, and secondary call-to-action messaging.", preview: "linear-gradient(135deg, #2c4a7c 0%, #1a2744 50%, #0f1a2e 100%)", previewLabel: "IG FEED", dimensions: "1080 × 1080" },
-  { id: "asset_3", type: "Instagram Story", title: "Story Swipe-Up — Landing Page Link", description: "Vertical story asset with direct link to your study landing page. Designed for quick engagement and tap-through.", preview: "linear-gradient(180deg, #e8d5b5 0%, #c4a67a 40%, #1a2744 100%)", previewLabel: "IG STORY", dimensions: "1080 × 1920" },
-  { id: "asset_4", type: "Newsletter Feature", title: "Weekly Newsletter Mention", description: "Featured placement in our weekly digest sent to 10,000+ active members. Includes study summary, key benefits, and enrollment CTA.", preview: "linear-gradient(135deg, #f7f5f0 0%, #e8d5b5 50%, #c4a67a 100%)", previewLabel: "EMAIL", dimensions: "600 × 400" },
+  { id: "asset_1", type: "Instagram Feed Post", title: "Study Announcement — Feed Post #1", description: "Primary recruitment graphic introducing the study objectives, eligibility criteria, and call-to-action for your target audience.", preview: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 40%, #333 100%)", previewLabel: "IG FEED", dimensions: "1080 × 1080" },
+  { id: "asset_2", type: "Instagram Feed Post", title: "Study Announcement — Feed Post #2", description: "Supporting graphic with participant benefits, study timeline, and secondary call-to-action messaging.", preview: "linear-gradient(135deg, #222 0%, #1a1a1a 50%, #111 100%)", previewLabel: "IG FEED", dimensions: "1080 × 1080" },
+  { id: "asset_3", type: "Instagram Story", title: "Story Swipe-Up — Landing Page Link", description: "Vertical story asset with direct link to your study landing page. Designed for quick engagement and tap-through.", preview: "linear-gradient(180deg, #333 0%, #1a1a1a 40%, #0a0a0a 100%)", previewLabel: "IG STORY", dimensions: "1080 × 1920" },
+  { id: "asset_4", type: "Newsletter Feature", title: "Weekly Newsletter Mention", description: "Featured placement in our weekly digest sent to 10,000+ active members. Includes study summary, key benefits, and enrollment CTA.", preview: "linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #111 100%)", previewLabel: "EMAIL", dimensions: "600 × 400" },
 ];
 
 // ─── Router ──────────────────────────────────────────────────────
@@ -38,9 +38,9 @@ function parseRoute(hash) {
 }
 
 // ─── Styles ──────────────────────────────────────────────────────
-const FONTS_LINK = "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700&display=swap";
-const co = { navy: "#1a2744", navyMid: "#2c4a7c", gold: "#e8d5b5", goldDark: "#c4a67a", bg: "#f7f5f0", bgDark: "#ede8df", card: "#fff", text: "#1a2744", textMuted: "#5a6a7a", textLight: "#8a8078", border: "#d5d0c8", borderLight: "#eae6de", inputBg: "#faf9f6", green: "#1a7a4a", greenBg: "rgba(26,122,74,0.06)", amber: "#b8860b", amberBg: "rgba(184,134,11,0.06)", red: "#c0392b" };
-const fo = { display: "'Playfair Display', serif", body: "'DM Sans', sans-serif" };
+const FONTS_LINK = "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap";
+const co = { navy: "#0a0a0a", navyMid: "#1a1a1a", gold: "#c8ff00", goldDark: "#a8d600", bg: "#0a0a0a", bgDark: "#050505", card: "#141414", text: "#ffffff", textMuted: "#999", textLight: "#666", border: "#2a2a2a", borderLight: "#1e1e1e", inputBg: "#111", green: "#4ade80", greenBg: "rgba(74,222,128,0.1)", amber: "#fbbf24", amberBg: "rgba(251,191,36,0.1)", red: "#ef4444" };
+const fo = { display: "'Space Grotesk', sans-serif", body: "'DM Sans', sans-serif" };
 
 const GlobalStyles = () => (
   <>
@@ -51,33 +51,33 @@ const GlobalStyles = () => (
       @keyframes slideIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
       @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .6; } }
       *, *::before, *::after { box-sizing: border-box; margin: 0; }
-      body { margin: 0; background: #f7f5f0; }
-      ::selection { background: rgba(44,74,124,0.15); }
-      input::placeholder, textarea::placeholder { color: #a8a098; }
+      body { margin: 0; background: #0a0a0a; }
+      ::selection { background: rgba(200,255,0,0.2); }
+      input::placeholder, textarea::placeholder { color: #555; }
     `}</style>
   </>
 );
 
 // ─── Reusable Components ─────────────────────────────────────────
-const AccentBar = () => <div style={{ height: 4, background: `linear-gradient(90deg, ${co.navy} 0%, ${co.navyMid} 35%, ${co.gold} 70%, ${co.goldDark} 100%)`, backgroundSize: "200% 100%", animation: "shimmer 6s linear infinite" }} />;
+const AccentBar = () => <div style={{ height: 3, background: `linear-gradient(90deg, #0a0a0a 0%, ${co.gold} 50%, #0a0a0a 100%)`, backgroundSize: "200% 100%", animation: "shimmer 4s linear infinite" }} />;
 
 const Badge = ({ children, variant = "navy" }) => {
-  const s = { navy: { background: co.navy, color: co.gold }, gold: { background: co.gold, color: co.navy }, green: { background: co.greenBg, color: co.green, border: `1px solid ${co.green}22` }, amber: { background: co.amberBg, color: co.amber, border: `1px solid ${co.amber}22` }, muted: { background: "#eae6de", color: co.textMuted } };
+  const s = { navy: { background: "rgba(200,255,0,0.1)", color: co.gold, border: "1px solid rgba(200,255,0,0.2)" }, gold: { background: co.gold, color: "#0a0a0a" }, green: { background: co.greenBg, color: co.green, border: "1px solid rgba(74,222,128,0.2)" }, amber: { background: co.amberBg, color: co.amber, border: "1px solid rgba(251,191,36,0.2)" }, muted: { background: "#1e1e1e", color: co.textMuted, border: "1px solid #2a2a2a" } };
   return <span style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 14px", borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: 1.2, textTransform: "uppercase", ...s[variant] }}>{children}</span>;
 };
 
-const Card = ({ children, style = {}, ...props }) => <div style={{ background: co.card, borderRadius: 18, padding: "clamp(28px, 5vw, 44px)", boxShadow: "0 2px 24px rgba(26,39,68,0.06), 0 1px 3px rgba(26,39,68,0.03)", border: "1px solid rgba(213,208,200,0.5)", ...style }} {...props}>{children}</div>;
+const Card = ({ children, style = {}, ...props }) => <div style={{ background: co.card, borderRadius: 18, padding: "clamp(28px, 5vw, 44px)", boxShadow: "0 2px 24px rgba(0,0,0,0.3)", border: "1px solid #1e1e1e", ...style }} {...props}>{children}</div>;
 
-const StepNumber = ({ n }) => <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 32, height: 32, borderRadius: "50%", fontSize: 13, fontWeight: 700, background: `linear-gradient(135deg, ${co.navy}, ${co.navyMid})`, color: co.gold, marginRight: 14, flexShrink: 0, boxShadow: "0 2px 8px rgba(26,39,68,0.18)" }}>{n}</span>;
+const StepNumber = ({ n }) => <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 32, height: 32, borderRadius: "50%", fontSize: 13, fontWeight: 700, background: co.gold, color: "#0a0a0a", marginRight: 14, flexShrink: 0, boxShadow: "0 2px 8px rgba(200,255,0,0.2)" }}>{n}</span>;
 
 const SectionHeader = ({ step, title, desc }) => (<><div style={{ display: "flex", alignItems: "center", marginBottom: 8 }}><StepNumber n={step} /><h2 style={{ fontFamily: fo.display, fontSize: 22, color: co.text, fontWeight: 600, margin: 0 }}>{title}</h2></div><p style={{ color: co.textMuted, fontSize: 14.5, lineHeight: 1.75, marginBottom: 28 }}>{desc}</p></>);
 
 const Input = ({ label, required, optional, error, type = "text", ...props }) => {
   const [focused, setFocused] = useState(false);
-  const shared = { width: "100%", padding: "14px 18px", borderRadius: 10, border: `1.5px solid ${error ? co.red : focused ? co.navyMid : co.border}`, fontSize: 15, fontFamily: fo.body, color: co.text, background: co.inputBg, outline: "none", transition: "border-color 0.25s ease, box-shadow 0.25s ease", boxSizing: "border-box", boxShadow: focused ? "0 0 0 3px rgba(44,74,124,0.1)" : "none" };
+  const shared = { width: "100%", padding: "14px 18px", borderRadius: 10, border: `1.5px solid ${error ? co.red : focused ? co.gold : co.border}`, fontSize: 15, fontFamily: fo.body, color: co.text, background: co.inputBg, outline: "none", transition: "border-color 0.25s ease, box-shadow 0.25s ease", boxSizing: "border-box", boxShadow: focused ? "0 0 0 3px rgba(200,255,0,0.08)" : "none" };
   return (
     <div style={{ marginBottom: 24 }}>
-      <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#3a4a5c", marginBottom: 8, letterSpacing: 0.4, textTransform: "uppercase" }}>
+      <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#aaa", marginBottom: 8, letterSpacing: 0.4, textTransform: "uppercase" }}>
         {label}{required && <span style={{ color: co.red }}> *</span>}{optional && <span style={{ color: co.textLight, fontWeight: 400, textTransform: "none", letterSpacing: 0 }}> — optional</span>}
       </label>
       {type === "textarea" ? <textarea {...props} rows={4} onFocus={(e) => { setFocused(true); props.onFocus?.(e); }} onBlur={(e) => { setFocused(false); props.onBlur?.(e); }} style={{ ...shared, resize: "vertical", lineHeight: 1.7 }} /> : <input type={type} {...props} onFocus={(e) => { setFocused(true); props.onFocus?.(e); }} onBlur={(e) => { setFocused(false); props.onBlur?.(e); }} style={shared} />}
@@ -86,9 +86,9 @@ const Input = ({ label, required, optional, error, type = "text", ...props }) =>
   );
 };
 
-const PrimaryButton = ({ children, onClick, disabled, style = {} }) => { const [h, s] = useState(false); return <button onClick={onClick} disabled={disabled} onMouseEnter={() => s(true)} onMouseLeave={() => s(false)} style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "18px 48px", borderRadius: 14, border: "none", background: `linear-gradient(135deg, ${co.navy}, ${co.navyMid})`, color: co.gold, fontSize: 16, fontWeight: 600, cursor: disabled ? "default" : "pointer", fontFamily: fo.body, letterSpacing: 0.5, boxShadow: h && !disabled ? "0 8px 32px rgba(26,39,68,0.3)" : "0 4px 20px rgba(26,39,68,0.25)", transform: h && !disabled ? "translateY(-2px)" : "translateY(0)", transition: "all 0.3s cubic-bezier(0.22,1,0.36,1)", opacity: disabled ? 0.5 : 1, ...style }}>{children}</button>; };
+const PrimaryButton = ({ children, onClick, disabled, style = {} }) => { const [h, s] = useState(false); return <button onClick={onClick} disabled={disabled} onMouseEnter={() => s(true)} onMouseLeave={() => s(false)} style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "18px 48px", borderRadius: 14, border: "none", background: co.gold, color: "#0a0a0a", fontSize: 16, fontWeight: 600, cursor: disabled ? "default" : "pointer", fontFamily: fo.body, letterSpacing: 0.5, boxShadow: h && !disabled ? "0 8px 32px rgba(200,255,0,0.25)" : "0 4px 20px rgba(200,255,0,0.15)", transform: h && !disabled ? "translateY(-2px)" : "translateY(0)", transition: "all 0.3s cubic-bezier(0.22,1,0.36,1)", opacity: disabled ? 0.5 : 1, ...style }}>{children}</button>; };
 
-const SecondaryButton = ({ children, onClick, style = {} }) => { const [h, s] = useState(false); return <button onClick={onClick} onMouseEnter={() => s(true)} onMouseLeave={() => s(false)} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 28px", borderRadius: 10, cursor: "pointer", border: `1.5px solid ${co.navy}`, fontSize: 14, fontWeight: 600, fontFamily: fo.body, letterSpacing: 0.3, background: h ? co.navy : "none", color: h ? co.gold : co.navy, transition: "all 0.25s ease", ...style }}>{children}</button>; };
+const SecondaryButton = ({ children, onClick, style = {} }) => { const [h, s] = useState(false); return <button onClick={onClick} onMouseEnter={() => s(true)} onMouseLeave={() => s(false)} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 28px", borderRadius: 10, cursor: "pointer", border: `1.5px solid ${co.gold}`, fontSize: 14, fontWeight: 600, fontFamily: fo.body, letterSpacing: 0.3, background: h ? co.gold : "none", color: h ? "#0a0a0a" : co.gold, transition: "all 0.25s ease", ...style }}>{children}</button>; };
 
 const BackLink = ({ onClick, label = "Back" }) => <button onClick={onClick} style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "none", border: "none", color: co.textMuted, fontSize: 14, fontWeight: 500, cursor: "pointer", fontFamily: fo.body, marginBottom: 32, padding: 0 }}>← {label}</button>;
 
@@ -108,9 +108,9 @@ const IC = {
   copy: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>,
   company: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>,
   trash: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>,
-  img: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2c4a7c" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>,
-  plus: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2c4a7c" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>,
-  mail: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2c4a7c" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
+  img: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff00" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>,
+  plus: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff00" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>,
+  mail: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff00" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
 };
 
 // ─── Asset Preview / Upload ──────────────────────────────────────
@@ -155,7 +155,7 @@ function AssetPreview({ asset, clientId, onImageChange }) {
       <input ref={fileRef} type="file" accept="image/*" style={{ position: "absolute", width: 1, height: 1, opacity: 0 }} onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f); e.target.value = ""; }} />
       <div onClick={() => fileRef.current?.click()} onDrop={(e) => { e.preventDefault(); setDragging(false); handleFile(e.dataTransfer?.files?.[0]); }} onDragOver={(e) => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)}
         style={{ ...boxSize, borderRadius: 14, background: dragging ? "rgba(44,74,124,0.15)" : asset.preview, border: dragging ? `2.5px dashed ${co.navyMid}` : "2.5px dashed rgba(255,255,255,0.35)", display: "flex", cursor: "pointer", position: "relative", overflow: "hidden", transition: "all 0.25s ease" }}>
-        <div style={{ position: "absolute", inset: 0, background: "rgba(26,39,68,0.5)", backdropFilter: "blur(2px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, pointerEvents: "none" }}>
+        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.7)", backdropFilter: "blur(2px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, pointerEvents: "none" }}>
           <span style={{ color: co.gold }}>{IC.upload}</span>
           <span style={{ color: "#fff", fontSize: 11, fontWeight: 600, textAlign: "center", padding: "0 10px", lineHeight: 1.4 }}>Drop image or<br/>click to upload</span>
         </div>
@@ -447,7 +447,7 @@ function ClientAssetReview({ client, onSave }) {
   const counts = { approved: assets.filter((a) => a.status === "approved").length, revision: assets.filter((a) => a.status === "revision").length, pending: assets.filter((a) => a.status === "pending").length };
   const handleSubmit = async () => { await onSave({ ...client, assets, overallStatus: "submitted", submittedAt: new Date().toISOString() }); setSubmitted(true); window.scrollTo({ top: 0, behavior: "smooth" }); };
 
-  if (submitted) return <div style={{ maxWidth: 560, margin: "0 auto", padding: "100px 20px", textAlign: "center" }}><div style={{ width: 72, height: 72, borderRadius: "50%", margin: "0 auto 28px", background: `linear-gradient(135deg, ${co.navy}, ${co.navyMid})`, display: "flex", alignItems: "center", justifyContent: "center", color: co.gold }}>{IC.checkLg}</div><h2 style={{ fontFamily: fo.display, fontSize: 30, color: co.text, marginBottom: 14 }}>Review Submitted</h2><p style={{ color: co.textMuted, fontSize: 15.5, lineHeight: 1.7 }}>Thank you, <strong>{client.companyName}</strong>. The Reputable team will be in touch.</p></div>;
+  if (submitted) return <div style={{ maxWidth: 560, margin: "0 auto", padding: "100px 20px", textAlign: "center" }}><div style={{ width: 72, height: 72, borderRadius: "50%", margin: "0 auto 28px", background: co.gold, display: "flex", alignItems: "center", justifyContent: "center", color: "#0a0a0a" }}>{IC.checkLg}</div><h2 style={{ fontFamily: fo.display, fontSize: 30, color: co.text, marginBottom: 14 }}>Review Submitted</h2><p style={{ color: co.textMuted, fontSize: 15.5, lineHeight: 1.7 }}>Thank you, <strong>{client.companyName}</strong>. The Reputable team will be in touch.</p></div>;
 
   return (
     <div style={{ maxWidth: 800, margin: "0 auto", padding: "32px 20px 80px" }}>
@@ -497,7 +497,7 @@ function Dashboard({ clients, loading, onNewClient, onViewClient, onDeleteClient
               <Card key={cl.id} style={{ padding: 24, cursor: "pointer", transition: "box-shadow 0.25s ease" }} onClick={() => onViewClient(cl)}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                    <div style={{ width: 44, height: 44, borderRadius: 12, background: `linear-gradient(135deg, ${co.navy}, ${co.navyMid})`, display: "flex", alignItems: "center", justifyContent: "center", color: co.gold }}>{IC.company}</div>
+                    <div style={{ width: 44, height: 44, borderRadius: 12, background: co.gold, display: "flex", alignItems: "center", justifyContent: "center", color: "#0a0a0a" }}>{IC.company}</div>
                     <div><div style={{ fontSize: 16, fontWeight: 600, color: co.text, marginBottom: 4 }}>{cl.companyName}</div><div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}><Badge variant={st.variant}>{st.label}</Badge>{cl.overallStatus === "submitted" && (() => { const allApproved = cl.assets.every((a) => a.status === "approved"); return allApproved ? <Badge variant="green">✓ All Approved</Badge> : <Badge variant="amber">✎ Has Revisions</Badge>; })()}</div></div>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
