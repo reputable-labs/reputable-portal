@@ -39,7 +39,24 @@ function parseRoute(hash) {
 
 // ─── Styles ──────────────────────────────────────────────────────
 const FONTS_LINK = "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap";
-const co = { navy: "#0a0a0a", navyMid: "#1a1a1a", gold: "#c8ff00", goldDark: "#a8d600", bg: "#0a0a0a", bgDark: "#050505", card: "#141414", text: "#ffffff", textMuted: "#999", textLight: "#666", border: "#2a2a2a", borderLight: "#1e1e1e", inputBg: "#111", green: "#4ade80", greenBg: "rgba(74,222,128,0.1)", amber: "#fbbf24", amberBg: "rgba(251,191,36,0.1)", red: "#ef4444" };
+const co = {
+  navy: "#111a2e", navyMid: "#1a2744", gold: "#b4e550", goldDark: "#96c43a",
+  bg: "#111a2e", bgDark: "#0d1424", card: "#182238", text: "#e8ecf2",
+  textMuted: "#8a9ab8", textLight: "#5a6a82", border: "#243352",
+  borderLight: "#1e2d48", inputBg: "#142035", green: "#4ade80",
+  greenBg: "rgba(74,222,128,0.08)", amber: "#fbbf24", amberBg: "rgba(251,191,36,0.08)",
+  red: "#ef4444",
+};
+const adminTheme = { ...co };
+const clientTheme = {
+  navy: "#1a2744", navyMid: "#2c4a7c", gold: "#5a8a2a", goldDark: "#4a7a1e",
+  bg: "#f7f5f0", bgDark: "#ede8df", card: "#ffffff", text: "#1a2744",
+  textMuted: "#5a6a7a", textLight: "#8a8078", border: "#d5d0c8",
+  borderLight: "#eae6de", inputBg: "#faf9f6", green: "#2d8a4e",
+  greenBg: "rgba(45,138,78,0.06)", amber: "#b8860b", amberBg: "rgba(184,134,11,0.06)",
+  red: "#c0392b",
+};
+const applyTheme = (theme) => Object.assign(co, theme);
 const fo = { display: "'Space Grotesk', sans-serif", body: "'DM Sans', sans-serif" };
 
 const GlobalStyles = () => (
@@ -51,33 +68,33 @@ const GlobalStyles = () => (
       @keyframes slideIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
       @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .6; } }
       *, *::before, *::after { box-sizing: border-box; margin: 0; }
-      body { margin: 0; background: #0a0a0a; }
-      ::selection { background: rgba(200,255,0,0.2); }
-      input::placeholder, textarea::placeholder { color: #555; }
+      body { margin: 0; background: ${co.bg}; }
+      ::selection { background: rgba(90,138,42,0.15); }
+      input::placeholder, textarea::placeholder { color: ${co.textLight}; }
     `}</style>
   </>
 );
 
 // ─── Reusable Components ─────────────────────────────────────────
-const AccentBar = () => <div style={{ height: 3, background: `linear-gradient(90deg, #0a0a0a 0%, ${co.gold} 50%, #0a0a0a 100%)`, backgroundSize: "200% 100%", animation: "shimmer 4s linear infinite" }} />;
+const AccentBar = () => <div style={{ height: 3, background: `linear-gradient(90deg, ${co.bg} 0%, ${co.gold} 50%, ${co.bg} 100%)`, backgroundSize: "200% 100%", animation: "shimmer 4s linear infinite" }} />;
 
 const Badge = ({ children, variant = "navy" }) => {
-  const s = { navy: { background: "rgba(200,255,0,0.1)", color: co.gold, border: "1px solid rgba(200,255,0,0.2)" }, gold: { background: co.gold, color: "#0a0a0a" }, green: { background: co.greenBg, color: co.green, border: "1px solid rgba(74,222,128,0.2)" }, amber: { background: co.amberBg, color: co.amber, border: "1px solid rgba(251,191,36,0.2)" }, muted: { background: "#1e1e1e", color: co.textMuted, border: "1px solid #2a2a2a" } };
+  const s = { navy: { background: `${co.gold}18`, color: co.gold, border: `1px solid ${co.gold}33` }, gold: { background: co.gold, color: co.navy }, green: { background: co.greenBg, color: co.green, border: `1px solid ${co.green}22` }, amber: { background: co.amberBg, color: co.amber, border: `1px solid ${co.amber}22` }, muted: { background: co.borderLight, color: co.textMuted, border: `1px solid ${co.border}` } };
   return <span style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 14px", borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: 1.2, textTransform: "uppercase", ...s[variant] }}>{children}</span>;
 };
 
-const Card = ({ children, style = {}, ...props }) => <div style={{ background: co.card, borderRadius: 18, padding: "clamp(28px, 5vw, 44px)", boxShadow: "0 2px 24px rgba(0,0,0,0.3)", border: "1px solid #1e1e1e", ...style }} {...props}>{children}</div>;
+const Card = ({ children, style = {}, ...props }) => <div style={{ background: co.card, borderRadius: 18, padding: "clamp(28px, 5vw, 44px)", boxShadow: `0 2px 24px ${co.card === "#ffffff" ? "rgba(26,39,68,0.06)" : "rgba(0,0,0,0.2)"}`, border: `1px solid ${co.border}`, ...style }} {...props}>{children}</div>;
 
-const StepNumber = ({ n }) => <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 32, height: 32, borderRadius: "50%", fontSize: 13, fontWeight: 700, background: co.gold, color: "#0a0a0a", marginRight: 14, flexShrink: 0, boxShadow: "0 2px 8px rgba(200,255,0,0.2)" }}>{n}</span>;
+const StepNumber = ({ n }) => <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 32, height: 32, borderRadius: "50%", fontSize: 13, fontWeight: 700, background: co.gold, color: co.navy, marginRight: 14, flexShrink: 0, boxShadow: `0 2px 8px ${co.gold}33` }}>{n}</span>;
 
 const SectionHeader = ({ step, title, desc }) => (<><div style={{ display: "flex", alignItems: "center", marginBottom: 8 }}><StepNumber n={step} /><h2 style={{ fontFamily: fo.display, fontSize: 22, color: co.text, fontWeight: 600, margin: 0 }}>{title}</h2></div><p style={{ color: co.textMuted, fontSize: 14.5, lineHeight: 1.75, marginBottom: 28 }}>{desc}</p></>);
 
 const Input = ({ label, required, optional, error, type = "text", ...props }) => {
   const [focused, setFocused] = useState(false);
-  const shared = { width: "100%", padding: "14px 18px", borderRadius: 10, border: `1.5px solid ${error ? co.red : focused ? co.gold : co.border}`, fontSize: 15, fontFamily: fo.body, color: co.text, background: co.inputBg, outline: "none", transition: "border-color 0.25s ease, box-shadow 0.25s ease", boxSizing: "border-box", boxShadow: focused ? "0 0 0 3px rgba(200,255,0,0.08)" : "none" };
+  const shared = { width: "100%", padding: "14px 18px", borderRadius: 10, border: `1.5px solid ${error ? co.red : focused ? co.gold : co.border}`, fontSize: 15, fontFamily: fo.body, color: co.text, background: co.inputBg, outline: "none", transition: "border-color 0.25s ease, box-shadow 0.25s ease", boxSizing: "border-box", boxShadow: focused ? `0 0 0 3px ${co.gold}14` : "none" };
   return (
     <div style={{ marginBottom: 24 }}>
-      <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#aaa", marginBottom: 8, letterSpacing: 0.4, textTransform: "uppercase" }}>
+      <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: co.textMuted, marginBottom: 8, letterSpacing: 0.4, textTransform: "uppercase" }}>
         {label}{required && <span style={{ color: co.red }}> *</span>}{optional && <span style={{ color: co.textLight, fontWeight: 400, textTransform: "none", letterSpacing: 0 }}> — optional</span>}
       </label>
       {type === "textarea" ? <textarea {...props} rows={4} onFocus={(e) => { setFocused(true); props.onFocus?.(e); }} onBlur={(e) => { setFocused(false); props.onBlur?.(e); }} style={{ ...shared, resize: "vertical", lineHeight: 1.7 }} /> : <input type={type} {...props} onFocus={(e) => { setFocused(true); props.onFocus?.(e); }} onBlur={(e) => { setFocused(false); props.onBlur?.(e); }} style={shared} />}
@@ -86,9 +103,9 @@ const Input = ({ label, required, optional, error, type = "text", ...props }) =>
   );
 };
 
-const PrimaryButton = ({ children, onClick, disabled, style = {} }) => { const [h, s] = useState(false); return <button onClick={onClick} disabled={disabled} onMouseEnter={() => s(true)} onMouseLeave={() => s(false)} style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "18px 48px", borderRadius: 14, border: "none", background: co.gold, color: "#0a0a0a", fontSize: 16, fontWeight: 600, cursor: disabled ? "default" : "pointer", fontFamily: fo.body, letterSpacing: 0.5, boxShadow: h && !disabled ? "0 8px 32px rgba(200,255,0,0.25)" : "0 4px 20px rgba(200,255,0,0.15)", transform: h && !disabled ? "translateY(-2px)" : "translateY(0)", transition: "all 0.3s cubic-bezier(0.22,1,0.36,1)", opacity: disabled ? 0.5 : 1, ...style }}>{children}</button>; };
+const PrimaryButton = ({ children, onClick, disabled, style = {} }) => { const [h, s] = useState(false); return <button onClick={onClick} disabled={disabled} onMouseEnter={() => s(true)} onMouseLeave={() => s(false)} style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "18px 48px", borderRadius: 14, border: "none", background: co.gold, color: co.navy, fontSize: 16, fontWeight: 600, cursor: disabled ? "default" : "pointer", fontFamily: fo.body, letterSpacing: 0.5, boxShadow: h && !disabled ? `0 8px 32px ${co.gold}40` : `0 4px 20px ${co.gold}26`, transform: h && !disabled ? "translateY(-2px)" : "translateY(0)", transition: "all 0.3s cubic-bezier(0.22,1,0.36,1)", opacity: disabled ? 0.5 : 1, ...style }}>{children}</button>; };
 
-const SecondaryButton = ({ children, onClick, style = {} }) => { const [h, s] = useState(false); return <button onClick={onClick} onMouseEnter={() => s(true)} onMouseLeave={() => s(false)} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 28px", borderRadius: 10, cursor: "pointer", border: `1.5px solid ${co.gold}`, fontSize: 14, fontWeight: 600, fontFamily: fo.body, letterSpacing: 0.3, background: h ? co.gold : "none", color: h ? "#0a0a0a" : co.gold, transition: "all 0.25s ease", ...style }}>{children}</button>; };
+const SecondaryButton = ({ children, onClick, style = {} }) => { const [h, s] = useState(false); return <button onClick={onClick} onMouseEnter={() => s(true)} onMouseLeave={() => s(false)} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 28px", borderRadius: 10, cursor: "pointer", border: `1.5px solid ${co.gold}`, fontSize: 14, fontWeight: 600, fontFamily: fo.body, letterSpacing: 0.3, background: h ? co.gold : "none", color: h ? co.navy : co.gold, transition: "all 0.25s ease", ...style }}>{children}</button>; };
 
 const BackLink = ({ onClick, label = "Back" }) => <button onClick={onClick} style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "none", border: "none", color: co.textMuted, fontSize: 14, fontWeight: 500, cursor: "pointer", fontFamily: fo.body, marginBottom: 32, padding: 0 }}>← {label}</button>;
 
@@ -108,9 +125,9 @@ const IC = {
   copy: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>,
   company: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>,
   trash: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>,
-  img: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff00" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>,
-  plus: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff00" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>,
-  mail: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff00" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
+  img: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>,
+  plus: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>,
+  mail: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
 };
 
 // ─── Asset Preview / Upload ──────────────────────────────────────
@@ -201,10 +218,13 @@ export default function App() {
     setClients((prev) => prev.filter((x) => x.id !== id));
   }, []);
 
+  const isClient = parsed.page === "client";
+  applyTheme(isClient ? clientTheme : adminTheme);
+
   return (
     <div style={{ minHeight: "100vh", background: co.bg, fontFamily: fo.body }}>
       <GlobalStyles />
-      <AccentBar />
+      {isClient ? null : <AccentBar />}
       {parsed.page === "landing" && <LandingPage onAdmin={() => navigate("admin")} />}
       {parsed.page === "dashboard" && <Dashboard clients={clients} loading={loading} onNewClient={() => navigate("admin/new")} onViewClient={(cl) => navigate(`admin/client/${cl.id}`)} onDeleteClient={handleDeleteClient} navigate={navigate} />}
       {parsed.page === "admin-new" && <AdminNewClient onCreated={(cl) => { handleCreateClient(cl); navigate("admin"); }} onBack={() => navigate("admin")} />}
@@ -447,7 +467,7 @@ function ClientAssetReview({ client, onSave }) {
   const counts = { approved: assets.filter((a) => a.status === "approved").length, revision: assets.filter((a) => a.status === "revision").length, pending: assets.filter((a) => a.status === "pending").length };
   const handleSubmit = async () => { await onSave({ ...client, assets, overallStatus: "submitted", submittedAt: new Date().toISOString() }); setSubmitted(true); window.scrollTo({ top: 0, behavior: "smooth" }); };
 
-  if (submitted) return <div style={{ maxWidth: 560, margin: "0 auto", padding: "100px 20px", textAlign: "center" }}><div style={{ width: 72, height: 72, borderRadius: "50%", margin: "0 auto 28px", background: co.gold, display: "flex", alignItems: "center", justifyContent: "center", color: "#0a0a0a" }}>{IC.checkLg}</div><h2 style={{ fontFamily: fo.display, fontSize: 30, color: co.text, marginBottom: 14 }}>Review Submitted</h2><p style={{ color: co.textMuted, fontSize: 15.5, lineHeight: 1.7 }}>Thank you, <strong>{client.companyName}</strong>. The Reputable team will be in touch.</p></div>;
+  if (submitted) return <div style={{ maxWidth: 560, margin: "0 auto", padding: "100px 20px", textAlign: "center" }}><div style={{ width: 72, height: 72, borderRadius: "50%", margin: "0 auto 28px", background: co.gold, display: "flex", alignItems: "center", justifyContent: "center", color: co.navy }}>{IC.checkLg}</div><h2 style={{ fontFamily: fo.display, fontSize: 30, color: co.text, marginBottom: 14 }}>Review Submitted</h2><p style={{ color: co.textMuted, fontSize: 15.5, lineHeight: 1.7 }}>Thank you, <strong>{client.companyName}</strong>. The Reputable team will be in touch.</p></div>;
 
   return (
     <div style={{ maxWidth: 800, margin: "0 auto", padding: "32px 20px 80px" }}>
@@ -497,7 +517,7 @@ function Dashboard({ clients, loading, onNewClient, onViewClient, onDeleteClient
               <Card key={cl.id} style={{ padding: 24, cursor: "pointer", transition: "box-shadow 0.25s ease" }} onClick={() => onViewClient(cl)}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                    <div style={{ width: 44, height: 44, borderRadius: 12, background: co.gold, display: "flex", alignItems: "center", justifyContent: "center", color: "#0a0a0a" }}>{IC.company}</div>
+                    <div style={{ width: 44, height: 44, borderRadius: 12, background: co.gold, display: "flex", alignItems: "center", justifyContent: "center", color: co.navy }}>{IC.company}</div>
                     <div><div style={{ fontSize: 16, fontWeight: 600, color: co.text, marginBottom: 4 }}>{cl.companyName}</div><div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}><Badge variant={st.variant}>{st.label}</Badge>{cl.overallStatus === "submitted" && (() => { const allApproved = cl.assets.every((a) => a.status === "approved"); return allApproved ? <Badge variant="green">✓ All Approved</Badge> : <Badge variant="amber">✎ Has Revisions</Badge>; })()}</div></div>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
