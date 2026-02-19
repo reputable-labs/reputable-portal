@@ -202,7 +202,6 @@ function getDefaultPreview(assetId) {
     asset_1: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 40%, #333 100%)',
     asset_2: 'linear-gradient(135deg, #222 0%, #1a1a1a 50%, #111 100%)',
     asset_3: 'linear-gradient(180deg, #333 0%, #1a1a1a 40%, #0a0a0a 100%)',
-    asset_4: 'linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #111 100%)',
   }
   return previews[assetId] || previews.asset_1
 }
