@@ -14,7 +14,6 @@ const DEFAULT_ASSETS = [
   { id: "asset_1", type: "Instagram Feed Post", title: "Study Announcement — Feed Post #1", description: "Primary recruitment graphic introducing the study objectives, eligibility criteria, and call-to-action for your target audience.", preview: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 40%, #333 100%)", previewLabel: "IG FEED", dimensions: "1080 × 1080" },
   { id: "asset_2", type: "Instagram Feed Post", title: "Study Announcement — Feed Post #2", description: "Supporting graphic with participant benefits, study timeline, and secondary call-to-action messaging.", preview: "linear-gradient(135deg, #222 0%, #1a1a1a 50%, #111 100%)", previewLabel: "IG FEED", dimensions: "1080 × 1080" },
   { id: "asset_3", type: "Instagram Story", title: "Story Swipe-Up — Landing Page Link", description: "Vertical story asset with direct link to your study landing page. Designed for quick engagement and tap-through.", preview: "linear-gradient(180deg, #333 0%, #1a1a1a 40%, #0a0a0a 100%)", previewLabel: "IG STORY", dimensions: "1080 × 1920" },
-  { id: "asset_4", type: "Newsletter Feature", title: "Weekly Newsletter Mention", description: "Featured placement in our weekly digest sent to 10,000+ active members. Includes study summary, key benefits, and enrollment CTA.", preview: "linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #111 100%)", previewLabel: "EMAIL", dimensions: "600 × 400" },
 ];
 
 // ─── Router ──────────────────────────────────────────────────────
@@ -311,7 +310,7 @@ function AdminClientView({ clientId, onSave, onBack }) {
       <Card style={{ marginBottom: 24 }}>
         <h3 style={{ fontFamily: fo.display, fontSize: 18, color: co.text, fontWeight: 600, marginBottom: 12 }}>Client Link</h3>
         <div style={{ display: "flex", alignItems: "center", gap: 10, background: co.inputBg, border: `1.5px solid ${co.border}`, borderRadius: 12, padding: "12px 16px" }}>
-          <span style={{ flex: 1, fontSize: 12.5, fontFamily: "monospace", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{clientUrl}</span>
+          <span style={{ flex: 1, fontSize: 12.5, fontFamily: "monospace", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", color: co.text }}>{clientUrl}</span>
           <button onClick={copyLink} style={{ padding: "8px 16px", borderRadius: 8, border: "none", cursor: "pointer", fontFamily: fo.body, fontSize: 13, fontWeight: 600, background: copied ? co.greenBg : co.navy, color: copied ? co.green : co.gold }}>{copied ? "✓ Copied!" : "Copy"}</button>
         </div>
       </Card>
