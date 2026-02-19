@@ -199,10 +199,10 @@ function rowToClient(row, assetRows) {
 
 function getDefaultPreview(assetId) {
   const previews = {
-    asset_1: 'linear-gradient(135deg, #1a2744 0%, #2c4a7c 40%, #4a7ab5 100%)',
-    asset_2: 'linear-gradient(135deg, #2c4a7c 0%, #1a2744 50%, #0f1a2e 100%)',
-    asset_3: 'linear-gradient(180deg, #e8d5b5 0%, #c4a67a 40%, #1a2744 100%)',
-    asset_4: 'linear-gradient(135deg, #f7f5f0 0%, #e8d5b5 50%, #c4a67a 100%)',
+    asset_1: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 40%, #333 100%)',
+    asset_2: 'linear-gradient(135deg, #222 0%, #1a1a1a 50%, #111 100%)',
+    asset_3: 'linear-gradient(180deg, #333 0%, #1a1a1a 40%, #0a0a0a 100%)',
+    asset_4: 'linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #111 100%)',
   }
   return previews[assetId] || previews.asset_1
 }
